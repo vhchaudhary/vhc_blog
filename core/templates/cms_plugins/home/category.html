@@ -1,0 +1,28 @@
+
+{% load i18n thumbnail static %}
+
+<div class="aside-widget">
+    <div class="section-title">
+        <h2>Catagories</h2>
+    </div>
+    <div class="category-widget">
+        <ul>
+            {% for ct in categories %}
+                <li><a href="#" class="cat-1">{{ ct.name }}<span>{{ ct.tech_ids.count }}</span></a></li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+<div class="aside-widget">
+    <div class="tags-widget">
+        <ul>
+            {% for tc in technologies %}
+                <li><a href="#">{{ tc.name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>

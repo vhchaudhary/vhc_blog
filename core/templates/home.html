@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% load cms_tags static %}
+
+{% block content %}
+
+    <div class="container">
+		<!-- home banner -->
+			{% placeholder "home_gallery" %}
+		<!-- /banner -->
+
+		<!-- recent posts -->
+			{% placeholder "home_recent_post" %}
+		<!-- /recent posts -->
+
+		<!-- row -->
+		<div class="row">
+
+			{% placeholder "home_most_read" %}
+
+			<div class="col-md-4">
+
+				<!-- ad -->
+					{% placeholder "ad_banner_350x200" %}
+				<!-- /ad -->
+
+				<!-- featured post widget -->
+					{% placeholder "home_featured_Post" %}
+				<!-- /post widget -->
+
+				<!-- catagories and tags -->
+					{% placeholder "home_blog_category" %}
+				<!-- / category and tags -->
+			</div>
+		</div>
+
+		{% placeholder "ad_banner_728x90" %}
+
+	</div>
+
+{% endblock %}
