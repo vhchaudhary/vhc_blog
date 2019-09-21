@@ -18,6 +18,7 @@ class CMSHomeGallaryPlugin(CMSPluginBase):
         context.update({
             'instance': instance,
             'placeholder': placeholder,
+            'blogs': Blog.objects.all()[:2],
         })
         return context
 

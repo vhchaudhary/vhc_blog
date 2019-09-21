@@ -2,6 +2,7 @@
 **/migrations/**
 **/__pycache__/**
 **/.idea/**
+**/media/**
 
 ### Python artifacts
 *.pyc
