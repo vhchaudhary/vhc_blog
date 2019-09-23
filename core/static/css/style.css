@@ -465,6 +465,7 @@ RESPONSIVE
 }
  #post-header.page-header {
      padding-top: 120px;
+     margin-top: -47px;
 }
  .page-header h1 {
      text-transform: capitalize;

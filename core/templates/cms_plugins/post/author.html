@@ -1,0 +1,25 @@
+
+{% load i18n static thumbnail %}
+
+<div class="section-row">
+    <div class="post-author">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="{{ author.image.url }}" alt="">
+            </div>
+            <div class="media-body">
+                <div class="media-heading">
+                    <h3>{{ author.name }}</h3>
+                </div>
+                <p>{{ author.about }}</p>
+                <ul class="author-social">
+                    <li><a href="{{ author.linked_in_link }}"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="{{ author.facebook_link }}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ author.twitter_in_link }}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="{{ author.google_link }}"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="{{ author.instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

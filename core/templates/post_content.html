@@ -2,26 +2,13 @@
 {% extends "base.html" %}
 {% load cms_tags static %}
 
+{% block post_header %}
+
+    {% placeholder "post_header" %}
+
+{% endblock %}
 
 {% block content %}
-
-    <header id="header">
-        <!-- Page Header -->
-			<div id="post-header" class="page-header">
-				<div class="background-img" style="background-image: url('{% static 'img/post-page.jpg' %}');"></div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-10">
-							<div class="post-meta">
-								<a class="post-category cat-2" href="category.html">JavaScript</a>
-								<span class="post-date">March 27, 2018</span>
-							</div>
-							<h1>Ask HN: Does Anybody Still Use JQuery?</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-    </header>
 
     <div class="section">
         <div class="container">
@@ -59,35 +46,11 @@
                 </div>
 
                 <!-- ad -->
-                <div class="section-row text-center">
-                    <a href="#" style="display: inline-block;margin: auto;">
-                        <img class="img-responsive" src="./img/ad-2.jpg" alt="">
-                    </a>
-                </div>
+                {% placeholder "ad_banner_728x90" %}
                 <!-- ad -->
 
                 <!-- author -->
-                <div class="section-row">
-                    <div class="post-author">
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="./img/author.png" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <h3>John Doe</h3>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <ul class="author-social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% placeholder "post_author" %}
                 <!-- /author -->
 
                 <!-- comments -->
@@ -193,28 +156,16 @@
                 {% placeholder "ad_banner_350x200" %}
                 <!-- /ad -->
 
-
                 <!-- post widget -->
-                {% placeholder "home_featured_post" %}
+                {% placeholder "side_featured_Post" %}
                 <!-- /post widget -->
 
                 <!-- catagories and tags -->
-                {% placeholder "home_blog_category" %}
+                {% placeholder "side_blog_category" %}
 				<!-- / category and tags -->
 
                 <!-- archive -->
-                <div class="aside-widget">
-                    <div class="section-title">
-                        <h2>Archive</h2>
-                    </div>
-                    <div class="archive-widget">
-                        <ul>
-                            <li><a href="#">January 2018</a></li>
-                            <li><a href="#">Febuary 2018</a></li>
-                            <li><a href="#">March 2018</a></li>
-                        </ul>
-                    </div>
-                </div>
+                {% placeholder "post_archive" %}
                 <!-- /archive -->
             </div>
             <!-- /aside -->

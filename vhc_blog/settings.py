@@ -167,7 +167,8 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ## Customize this
-    ('home.html', 'Fullwidth'),
+    ('home.html', 'Home'),
+    ('post_content.html', 'Content'),
 )
 
 CMS_PERMISSION = True
@@ -186,13 +187,25 @@ CMS_PLACEHOLDER_CONF = {
         "plugins": 'CMSHomeMostReadPlugin',
         "name": gettext("HomeMostRead")
     },
-    'home_featured_Post': {
+    'side_featured_Post': {
         "plugins": 'CMSHomeFeaturedPostPlugin',
-        "name": gettext("HomeFeaturedPost")
+        "name": gettext("FeaturedPost")
     },
-    'home_blog_category': {
+    'side_blog_category': {
         "plugins": 'CMSHomeCategoryPlugin',
-        "name": gettext("HomeBlogCategories")
+        "name": gettext("BlogCategories")
+    },
+    'post_header': {
+        "plugins": 'CMSPostHeaderPlugin',
+        "name": gettext("PostHeader")
+    },
+    'post_archive': {
+        "plugins": 'CMSPostArchivePlugin',
+        "name": gettext("PostArchive")
+    },
+    'post_author': {
+        "plugins": 'CMSPostAuthorPlugin',
+        "name": gettext("Post Author")
     },
     'ad_banner_350x200': {
         "plugins": 'AdBanner300X250Plugin',

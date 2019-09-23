@@ -28,17 +28,33 @@ class Technology(TimeStampedModel):
         verbose_name_plural = _("Technologies")
 
 
+class Author(TimeStampedModel):
+    name = models.CharField(_("Name"), max_length=100)
+    email = models.CharField(_("Email"), max_length=50, null=True, blank=True,)
+    about = models.TextField(_("About"), max_length=1000, null=True, blank=True,)
+    facebook_link = models.URLField(_("Facebook Link"), null=True, blank=True,)
+    twitter_link = models.URLField(_("Twitter Link"), null=True, blank=True,)
+    google_link = models.URLField(_("Google Link"), null=True, blank=True,)
+    instagram_link = models.URLField(_("Instagram Link"), null=True, blank=True,)
+    linked_in_link = models.URLField(_("LinkedIn Link"), null=True, blank=True,)
+    image = FilerImageField(verbose_name=_("Image"), null=True, blank=True, related_name='+', on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
+
+
 class Blog(TimeStampedModel):
-    name = models.CharField(_("Name"), max_length=100, blank=True, default='')
-    title = models.CharField(_("Title"), max_length=100, blank=True, default='')
+    name = models.CharField(_("Name"), max_length=200)
+    title = models.CharField(_("Title"), max_length=100, unique=True)
     url = models.URLField(_("URL"), blank=True, default='')
     image = FilerImageField(verbose_name=_("Image"), null=True, blank=True, related_name='+', on_delete=models.SET_NULL)
-    small_image = FilerImageField(verbose_name=_("Mobile Image"), null=True, related_name='+', blank=True, on_delete=models.SET_NULL)
+    small_image = FilerImageField(verbose_name=_("Small Image"), null=True, related_name='+', blank=True, on_delete=models.SET_NULL)
     video_file = FilerFileField(verbose_name=_("Video file"), null=True, blank=True, related_name='+', on_delete=models.SET_NULL,
                                 help_text=_('Allowed extensions: {extension}').format(extension=ALLOWED_EXTENSIONS))
     tech = models.ForeignKey(Technology, verbose_name=_("Technology"),  on_delete=models.SET_NULL, null=True)
-    content = models.TextField(_('Content'), blank=True, null=True)
     description = models.TextField(_('Description'), blank=True, null=True)
+    content = models.TextField(_('Content'), blank=True, null=True)
+    author = models.ForeignKey(Author, verbose_name=_("Author"), null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -46,3 +62,4 @@ class Blog(TimeStampedModel):
     # def clean(self):
     #     if self.file and self.file.extension not in ALLOWED_EXTENSIONS:
     #         raise ValidationError(_('Incorrect file type: {extension}.').format(extension=self.file.extension))
+

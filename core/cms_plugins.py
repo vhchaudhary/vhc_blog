@@ -7,6 +7,8 @@ from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext as _
 from .models import *
 from .plugin_models import *
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class CMSHomeGallaryPlugin(CMSPluginBase):
@@ -35,6 +37,7 @@ class CMSHomeRecentPostPlugin(CMSPluginBase):
         context.update({
             'instance': instance,
             'placeholder': placeholder,
+            'blogs': Blog.objects.all()[:6],
         })
         return context
 
@@ -51,6 +54,7 @@ class CMSHomeMostReadPlugin(CMSPluginBase):
         context.update({
             'instance': instance,
             'placeholder': placeholder,
+            'blogs': Blog.objects.all()[:6],
         })
         return context
 
@@ -67,6 +71,7 @@ class CMSHomeFeaturedPostPlugin(CMSPluginBase):
         context.update({
             'instance': instance,
             'placeholder': placeholder,
+            'blogs': Blog.objects.all()[:4],
         })
         return context
 
@@ -90,6 +95,32 @@ class CMSHomeCategoryPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(CMSHomeCategoryPlugin)
+
+
+class CMSPostArchivePlugin(CMSPluginBase):
+    model = PostArchivePlugin
+    name = _('Post Archive')
+    render_template = 'cms_plugins/post/archive.html'
+
+    def get_last_six_months(self):
+        months = []
+        today = datetime.today()
+        for i in range(1,7):
+            months.append((today.strftime('%B'), today.year))
+            today = today - relativedelta(months=1)
+        return  months
+
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+            'months': self.get_last_six_months()
+        })
+        return context
+
+
+plugin_pool.register_plugin(CMSPostArchivePlugin)
 
 
 class AdBanner300X250Plugin(CMSPluginBase):
@@ -122,3 +153,41 @@ class AdBanner728X90Plugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(AdBanner728X90Plugin)
+
+
+class CMSPostHeaderPlugin(CMSPluginBase):
+    model = PostHeaderPlugin
+    name = _("Post Header")
+    render_template = 'cms_plugins/post/post_header.html'
+
+    def render(self, context, instance, placeholder):
+        current_page = context.get('request').current_page.get_title()
+        blog = Blog.objects.get(title=current_page)
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+            'blog': blog,
+        })
+        return context
+
+
+plugin_pool.register_plugin(CMSPostHeaderPlugin)
+
+
+class CMSPostAuthorPlugin(CMSPluginBase):
+    model = PostAuthorPlugin
+    name = _("Post Author")
+    render_template = 'cms_plugins/post/author.html'
+
+    def render(self, context, instance, placeholder):
+        current_page = context.get('request').current_page.get_title()
+        author = Blog.objects.get(title=current_page).author
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+            'author': author,
+        })
+        return context
+
+
+plugin_pool.register_plugin(CMSPostAuthorPlugin)

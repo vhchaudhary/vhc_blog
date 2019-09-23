@@ -31,9 +31,12 @@
     </head>
 	<body>
 		{% cms_toolbar %}
-		<!-- Header -->
-			{% include "header.html" %}
-		<!-- /Header -->
+
+		{% include "header.html" %}
+
+		{% block post_header %}
+
+		{% endblock %}
 
 		<!-- section -->
 		<div class="section">
@@ -45,10 +48,7 @@
 		</div>
 		<!-- /section -->
 
-
-		<!-- Footer -->
-			{% include "footer.html" %}
-		<!-- /Footer -->
+		{% include "footer.html" %}
 
 		<!-- jQuery Plugins -->
 		<script src="{% static 'js/jquery.min.js' %}"></script>

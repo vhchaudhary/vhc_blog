@@ -14,3 +14,4 @@ class CategAdmin(admin.ModelAdmin):
 admin.site.register(Blog)
 admin.site.register(Technology)
 admin.site.register(Category, CategAdmin)
+admin.site.register(Author)

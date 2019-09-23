@@ -1,0 +1,15 @@
+
+{% load i18n %}
+
+<div class="aside-widget">
+    <div class="section-title">
+        <h2>Archive</h2>
+    </div>
+    <div class="archive-widget">
+        <ul>
+            {% for month in months %}
+                <li><a href="#">{{ month.0 }}, {{ month.1 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

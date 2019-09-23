@@ -1,0 +1,19 @@
+
+{% load i18n static thumbnail %}
+
+<div class="row">
+    <div id="post-header" class="page-header">
+        <div class="background-img" style="background-image: url('{{ blog.image.url }}');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="post-meta">
+                        <a class="post-category cat-2" href="category.html">{{ blog.tech }}</a>
+                        <span class="post-date">{{ blog.modified }}</span>
+                    </div>
+                    <h1>{{ blog.description }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
