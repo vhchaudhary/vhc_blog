@@ -3,6 +3,7 @@
 **/__pycache__/**
 **/.idea/**
 **/media/**
+**/uploads/**
 
 ### Python artifacts
 *.pyc

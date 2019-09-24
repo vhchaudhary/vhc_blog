@@ -138,6 +138,7 @@ INSTALLED_APPS = [
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
+    'redactor',
     'vhc_blog',
     'core'
 ]
@@ -199,6 +200,10 @@ CMS_PLACEHOLDER_CONF = {
         "plugins": 'CMSPostHeaderPlugin',
         "name": gettext("PostHeader")
     },
+    'post_content': {
+        "plugins": 'CMSPostContentPlugin',
+        "name": gettext("PostContent ")
+    },
     'post_archive': {
         "plugins": 'CMSPostArchivePlugin',
         "name": gettext("PostArchive")
@@ -206,6 +211,10 @@ CMS_PLACEHOLDER_CONF = {
     'post_author': {
         "plugins": 'CMSPostAuthorPlugin',
         "name": gettext("Post Author")
+    },
+    'post_comment': {
+        "plugins": 'CMSPostCommentPlugin',
+        "name": gettext("Post Comment")
     },
     'ad_banner_350x200': {
         "plugins": 'AdBanner300X250Plugin',
@@ -216,6 +225,10 @@ CMS_PLACEHOLDER_CONF = {
         "name": gettext("AdBanner_728x90")
     },
 }
+
+REDACTOR_UPLOAD = 'uploads/'
+REDACTOR_OPTIONS = {'plugins': ['source', 'fontcolor', 'inlinestyle', 'fontsize', 'fontfamily',
+                                'imagemanager', 'filemanager', 'definedlinks', 'textdirection', 'alignment', 'table']}
 
 DATABASES = {
     'default': {

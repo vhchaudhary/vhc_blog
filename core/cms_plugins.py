@@ -155,6 +155,22 @@ class AdBanner728X90Plugin(CMSPluginBase):
 plugin_pool.register_plugin(AdBanner728X90Plugin)
 
 
+class CMSPostContentPlugin(CMSPluginBase):
+    model = PostContentPlugin
+    name = _("Post Content")
+    render_template = 'cms_plugins/post/content.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+        })
+        return context
+
+
+plugin_pool.register_plugin(CMSPostContentPlugin)
+
+
 class CMSPostHeaderPlugin(CMSPluginBase):
     model = PostHeaderPlugin
     name = _("Post Header")
@@ -191,3 +207,19 @@ class CMSPostAuthorPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(CMSPostAuthorPlugin)
+
+
+class CMSPostCommentPlugin(CMSPluginBase):
+    model = PostCommentPlugin
+    name = _("Post Comment")
+    render_template = 'cms_plugins/post/comment.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+        })
+        return context
+
+
+plugin_pool.register_plugin(CMSPostCommentPlugin)
