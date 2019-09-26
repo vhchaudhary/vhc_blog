@@ -5,7 +5,6 @@ from filer.fields.file import FilerFileField
 from filer.fields.image import FilerImageField
 from django.utils.translation import gettext as _
 from django_extensions.db.models import TimeStampedModel
-from djrichtextfield.models import RichTextField
 
 
 class Category(TimeStampedModel):
@@ -54,7 +53,6 @@ class Blog(TimeStampedModel):
                                 help_text=_('Allowed extensions: {extension}').format(extension=ALLOWED_EXTENSIONS))
     tech = models.ForeignKey(Technology, verbose_name=_("Technology"),  on_delete=models.SET_NULL, null=True)
     description = models.TextField(_('Description'), blank=True, null=True)
-    content = models.TextField(_('Content'), blank=True, null=True)
     author = models.ForeignKey(Author, verbose_name=_("Author"), null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
@@ -63,21 +61,3 @@ class Blog(TimeStampedModel):
     def clean(self):
         if self.video_file and self.video_file.extension not in ALLOWED_EXTENSIONS:
             raise ValidationError(_('Incorrect file type: {extension}.').format(extension=self.video_file.extension))
-
-
-class Thread(TimeStampedModel):
-    title = models.CharField(_("Title"), max_length=100, unique=True)
-    blog = models.ForeignKey(Blog, verbose_name=_("Blog"), on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class ThreadMessage(TimeStampedModel):
-    name = models.CharField(_("Name"), max_length=50)
-    email = models.EmailField(_("Email"), max_length=50)
-    website = models.URLField(_("Website"), max_length=50, null=True, blank=True)
-    message = models.TextField(_("Message"), max_length=1000)
-    thread = models.ForeignKey(Thread, verbose_name=_("Thread"), on_delete=models.CASCADE)
-    parent = models.ForeignKey("self", verbose_name=_("Parent"), related_name="childs", on_delete=models.CASCADE, null=True, blank=True)
-

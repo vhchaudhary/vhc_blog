@@ -10,7 +10,7 @@
         <!-- comment -->
         <div class="media">
             <div class="media-left">
-                <img class="media-object" src="./img/avatar.png" alt="">
+                <img class="media-object" src="{% static 'img/avatar.png' %}" alt="">
             </div>
             <div class="media-body">
                 <div class="media-heading">
@@ -63,6 +63,7 @@
         <p>your email address will not be published. required fields are marked *</p>
     </div>
     <form class="post-reply">
+        <input type="hidden" value="{{ blog.id }}" name="blog_id" id="blog_id">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">

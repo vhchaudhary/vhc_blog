@@ -215,9 +215,12 @@ class CMSPostCommentPlugin(CMSPluginBase):
     render_template = 'cms_plugins/post/comment.html'
 
     def render(self, context, instance, placeholder):
+        current_page = context.get('request').current_page.get_title()
+        blog = Blog.objects.get(title=current_page)
         context.update({
             'instance': instance,
             'placeholder': placeholder,
+            'blog': blog,
         })
         return context
 
