@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext as _
+from django_comments.forms import CommentForm
 from .models import *
 from .plugin_models import *
 from datetime import datetime

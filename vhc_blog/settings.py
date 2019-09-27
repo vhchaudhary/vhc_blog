@@ -33,13 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'vhc_blog.urls'
-
-
 
 
 # Internationalization
@@ -140,7 +134,8 @@ INSTALLED_APPS = [
     'djangocms_video',
     'redactor',
     'vhc_blog',
-    'core'
+    'core',
+    'django_comments',
 ]
 
 LANGUAGES = (

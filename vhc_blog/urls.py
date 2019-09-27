@@ -26,6 +26,7 @@ urlpatterns += i18n_patterns(
 if settings.DEBUG:
     urlpatterns = [
         url(r'^redactor/', include('redactor.urls')),
+        url(r'^comments/', include('django_comments.urls')),
         url(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         ] + staticfiles_urlpatterns() + urlpatterns
