@@ -65,3 +65,8 @@ class AdBanner728X90(CMSPlugin):
     title = models.CharField(_("Title"), max_length=200, blank=True, default='')
     link = models.URLField(_("Link"), max_length=200, blank=True, default='')
     description = models.TextField(_('Description'), max_length=500, blank=True, default='')
+
+
+class PostSearchList(CMSPlugin):
+    title = models.CharField(_("Title"), max_length=200, blank=True, default='')
+    description = models.TextField(_('Description'), max_length=500, blank=True, default='')

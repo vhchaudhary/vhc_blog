@@ -8,8 +8,7 @@
     <div class="category-widget">
         <ul>
             {% for ct in categories %}
-                <li><a href="#" class="cat-1">{{ ct.name }}<span>{{ ct.tech_ids.count }}</span></a></li>
-
+                <li><a href="/post-list/?id={{ ct.id }}" class="cat-1">{{ ct.name }}<span>{{ ct.count }}</span></a></li>
             {% endfor %}
         </ul>
     </div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load cms_tags static %}
+
+{% block post_header %}
+
+    <div class="page-header" style="padding-top:50px;padding-bottom:60px;margin-top:-50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <ul class="page-header-breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li>Regular page</li>
+                    </ul>
+                    <h1>Regular page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="section-row">
+
+            {% placeholder "post_search_list" %}
+
+            <!-- aside -->
+            <div class="col-md-4">
+                <!-- ad -->
+                {% placeholder "ad_banner_350x200" %}
+                <!-- /ad -->
+
+                <!-- post widget -->
+                {% placeholder "side_featured_Post" %}
+                <!-- /post widget -->
+            </div>
+            <!-- /aside -->
+        </div>
+        <!-- /row -->
+    </div>
+
+{% endblock %}

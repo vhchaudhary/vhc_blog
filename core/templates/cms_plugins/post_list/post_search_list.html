@@ -1,0 +1,14 @@
+
+{% load i18n thumbnail static %}
+
+<div class="col-md-8 category-widget">
+    <ul>
+        {% if blogs %}
+            {% for blog in blogs %}
+                <li class="ca-3"><h4><a href="/{{blog.title}}" class="cat-3">{{ blog.description }}</a></h4></li>
+            {% endfor %}
+        {% else %}
+            <li class="ca-3"><h4>Not any post found...</h4></li>
+        {% endif %}
+    </ul>
+</div>

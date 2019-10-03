@@ -47,7 +47,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -62,6 +62,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'vhc_blog', 'static'),
 )
 SITE_ID = 1
+
+APPEND_SLASH = True
 
 
 TEMPLATES = [
@@ -164,7 +166,8 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('home.html', 'Home'),
-    ('post_content.html', 'Content'),
+    ('post_content.html', 'Post'),
+    ('post_list.html', 'Post List'),
 )
 
 CMS_PERMISSION = True
@@ -218,6 +221,10 @@ CMS_PLACEHOLDER_CONF = {
     'ad_banner_728x90': {
         "plugins": 'AdBanner728X90Plugin',
         "name": gettext("AdBanner_728x90")
+    },
+    'post_search_list': {
+        "plugins": 'PostSearchListPlugin',
+        "name": gettext("Post List")
     },
 }
 

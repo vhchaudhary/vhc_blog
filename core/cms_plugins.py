@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext as _
-from django_comments.forms import CommentForm
 from .models import *
 from .plugin_models import *
 from datetime import datetime
@@ -87,9 +86,13 @@ class CMSHomeCategoryPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context.update({
+            'categories': [{'id': ct.id,
+                            'name': ct.name,
+                            'count': Blog.objects.filter(tech__category__pk=ct.id).count()}
+                           for ct in Category.objects.all()]})
+        context.update({
             'instance': instance,
             'placeholder': placeholder,
-            'categories': Category.objects.all(),
             'technologies': Technology.objects.all()
         })
         return context
@@ -98,25 +101,25 @@ class CMSHomeCategoryPlugin(CMSPluginBase):
 plugin_pool.register_plugin(CMSHomeCategoryPlugin)
 
 
+def get_last_six_months():
+    months = []
+    today = datetime.today()
+    for i in range(1, 7):
+        months.append((today.strftime('%B'), today.year))
+        today = today - relativedelta(months=1)
+    return months
+
+
 class CMSPostArchivePlugin(CMSPluginBase):
     model = PostArchivePlugin
     name = _('Post Archive')
     render_template = 'cms_plugins/post/archive.html'
 
-    def get_last_six_months(self):
-        months = []
-        today = datetime.today()
-        for i in range(1,7):
-            months.append((today.strftime('%B'), today.year))
-            today = today - relativedelta(months=1)
-        return  months
-
-
     def render(self, context, instance, placeholder):
         context.update({
             'instance': instance,
             'placeholder': placeholder,
-            'months': self.get_last_six_months()
+            'months': get_last_six_months()
         })
         return context
 
@@ -227,3 +230,27 @@ class CMSPostCommentPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(CMSPostCommentPlugin)
+
+
+class PostSearchListPlugin(CMSPluginBase):
+    model = PostSearchList
+    name = _("Post Search List")
+    render_template = 'cms_plugins/post_list/post_search_list.html'
+
+    def render(self, context, instance, placeholder):
+        id = context.get('request').GET.get('id')
+        month = context.get('request').GET.get('month')
+        year = context.get('request').GET.get('year')
+        if id:
+            blogs = Blog.objects.filter(tech__category__pk=id)
+        elif month and year:
+            month_no = int(datetime.strptime(month, '%B').strftime('%m'))
+            blogs = Blog.objects.filter(modified__year=year, modified__month=month_no)
+
+        context.update({
+            'blogs': blogs
+        })
+        return context
+
+
+plugin_pool.register_plugin(PostSearchListPlugin)
