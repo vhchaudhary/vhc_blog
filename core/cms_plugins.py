@@ -249,6 +249,8 @@ class PostSearchListPlugin(CMSPluginBase):
         elif month and year:
             month_no = int(datetime.strptime(month, '%B').strftime('%m'))
             blogs = Blog.objects.filter(modified__year=year, modified__month=month_no)
+        else:
+            blogs = None
 
         context.update({
             'instance': instance,
