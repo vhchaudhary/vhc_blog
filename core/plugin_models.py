@@ -70,3 +70,13 @@ class AdBanner728X90(CMSPlugin):
 class PostSearchList(CMSPlugin):
     title = models.CharField(_("Title"), max_length=200, blank=True, default='')
     description = models.TextField(_('Description'), max_length=500, blank=True, default='')
+
+
+class PluginNewsLetter(CMSPlugin):
+    title = models.CharField(_("Title"), max_length=200, blank=True, default='')
+    description = models.TextField(_('Description'), max_length=500, blank=True, default='')
+    linked_in_link = models.URLField(_("LinkedIn Link"), null=True, blank=True, )
+    facebook_link = models.URLField(_("Facebook Link"), null=True, blank=True, )
+    twitter_link = models.URLField(_("Twitter Link"), null=True, blank=True, )
+    google_link = models.URLField(_("Google Link"), null=True, blank=True, )
+    instagram_link = models.URLField(_("Instagram Link"), null=True, blank=True, )

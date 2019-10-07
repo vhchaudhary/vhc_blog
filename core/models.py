@@ -61,3 +61,11 @@ class Blog(TimeStampedModel):
     def clean(self):
         if self.video_file and self.video_file.extension not in ALLOWED_EXTENSIONS:
             raise ValidationError(_('Incorrect file type: {extension}.').format(extension=self.video_file.extension))
+
+
+class NewsLetterSubscription(TimeStampedModel):
+    email = models.EmailField(_("email"), max_length=50)
+    subscribed = models.BooleanField(_("Is Subscribed ?"), default=False, blank=True)
+
+    def __str__(self):
+        return self.email

@@ -239,18 +239,39 @@ class PostSearchListPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         id = context.get('request').GET.get('id')
+        tag = context.get('request').GET.get('tag')
         month = context.get('request').GET.get('month')
         year = context.get('request').GET.get('year')
         if id:
             blogs = Blog.objects.filter(tech__category__pk=id)
+        elif tag:
+            blogs = Blog.objects.filter(tech__pk=tag)
         elif month and year:
             month_no = int(datetime.strptime(month, '%B').strftime('%m'))
             blogs = Blog.objects.filter(modified__year=year, modified__month=month_no)
 
         context.update({
+            'instance': instance,
+            'placeholder': placeholder,
             'blogs': blogs
         })
         return context
 
 
 plugin_pool.register_plugin(PostSearchListPlugin)
+
+
+class NewsLetterPlugin(CMSPluginBase):
+    model = PluginNewsLetter
+    name = _("News Letter")
+    render_template = 'cms_plugins/core/news_letter.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+            'placeholder': placeholder,
+        })
+        return context
+
+
+plugin_pool.register_plugin(NewsLetterPlugin)

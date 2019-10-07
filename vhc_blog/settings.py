@@ -226,6 +226,10 @@ CMS_PLACEHOLDER_CONF = {
         "plugins": 'PostSearchListPlugin',
         "name": gettext("Post List")
     },
+    'newslatter': {
+        "plugins": 'NewsLetterPlugin',
+        "name": gettext("News Letter")
+    },
 }
 
 REDACTOR_UPLOAD = 'uploads/'

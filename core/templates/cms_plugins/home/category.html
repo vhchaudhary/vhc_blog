@@ -19,7 +19,7 @@
     <div class="tags-widget">
         <ul>
             {% for tc in technologies %}
-                <li><a href="#">{{ tc.name }}</a></li>
+                <li><a href="/post-list/?tag={{ tc.id }}">{{ tc.name }}</a></li>
             {% endfor %}
 
         </ul>
