@@ -57,13 +57,15 @@ class PostCommentPlugin(CMSPlugin):
 
 class AdBanner300X250(CMSPlugin):
     title = models.CharField(_("Title"), max_length=200, blank=True, default='')
-    link = models.URLField(_("Link"), max_length=200, blank=True, default='')
+    client_id = models.CharField(_("Client ID"), max_length=200, blank=True, default='')
+    slot = models.CharField(_("Slot"), max_length=200, blank=True, default='')
     description = models.TextField(_('Description'), max_length=500, blank=True, default='')
 
 
 class AdBanner728X90(CMSPlugin):
     title = models.CharField(_("Title"), max_length=200, blank=True, default='')
-    link = models.URLField(_("Link"), max_length=200, blank=True, default='')
+    client_id = models.CharField(_("Client ID"), max_length=200, blank=True, default='')
+    slot = models.CharField(_("Slot"), max_length=200, blank=True, default='')
     description = models.TextField(_('Description'), max_length=500, blank=True, default='')
 
 

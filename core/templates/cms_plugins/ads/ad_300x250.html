@@ -2,7 +2,13 @@
 {% load i18n thumbnail static %}
 
 <div class="aside-widget text-center">
-    <a href="#" style="display: inline-block;margin: auto;">
-        <img class="img-responsive" src="{% static 'img/ad-1.jpg' %}" alt="">
-    </a>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Homepage Leaderboard -->
+    <ins class="adsbygoogle"
+    style="display:inline-block;width:728px;height:90px"
+    data-ad-client="{{ instance.client_id }}"
+    data-ad-slot="{{ instance.slot }}"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
