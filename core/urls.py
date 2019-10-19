@@ -5,6 +5,6 @@ from .views import *
 
 
 urlpatterns = [
-    url(r'^newslatter/subscrib4$', subscribe_newsletter,  name="subscribe_newsletter"),
+    url(r'^newslatter/subscribe$', subscribe_newsletter,  name="subscribe_newsletter"),
 ]
 
